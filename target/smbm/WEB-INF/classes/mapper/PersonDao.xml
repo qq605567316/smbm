@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tt.dao.PersonDao">
+    <!-- 目的：为dao接口方法提供sql语句配置 -->
+    <select id="queryById" resultType="Person" parameterType="int">
+        <!-- 具体的sql -->
+        SELECT
+        *
+        FROM
+        person
+        WHERE
+        pid = #{pid}
+    </select>
+
+    <select id="queryAll" resultType="Person">
+        SELECT
+        *
+        FROM
+        person
+        ORDER BY
+        pid
+        LIMIT #{offset}, #{limit}
+    </select>
+
+    <select id="queryBySid" resultType="Person" parameterType="int">
+        SELECT
+        *
+        FROM
+        person
+        WHERE
+        sid = #{sid}
+    </select>
+
+    <update id="update" parameterType="Person">
+        UPDATE
+        person
+        <set>
+            <if test="sid != 0">sid = #{sid},</if>
+            <if test="pname != null">pname = #{pname},</if>
+            <if test="ptel != null">ptel = #{ptel},</if>
+            <if test="pposition != null">pposition=#{pposition},</if>
+            <if test="psalary != 0.0">psalary=#{psalary}</if>
+        </set>
+        WHERE
+            pid = #{pid}
+    </update>
+
+    <insert id="insert" parameterType="Person">
+        INSERT INTO
+        person(sid,pname,ptel,pposition,psalary)
+        VALUES
+            (#{sid},#{pname},#{ptel},#{pposition},#{psalary})
+
+    </insert>
+
+    <delete id="delete" parameterType="int">
+        DELETE FROM person WHERE pid = #{pid}
+    </delete>
+
+    <select id="count" resultType="int">
+        SELECT count(pid) FROM person
+    </select>
+
+</mapper>

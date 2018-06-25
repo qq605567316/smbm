@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tt.dao.ManagerDao">
+    <!-- 目的：为dao接口方法提供sql语句配置 -->
+    <select id="queryById" resultType="Manager" parameterType="int">
+        <!-- 具体的sql -->
+        SELECT
+        *
+        FROM
+        manager
+        WHERE
+        mid = #{mid}
+    </select>
+
+    <select id="login" resultType="Manager">
+        <!-- 具体的sql -->
+        SELECT
+        *
+        FROM
+        manager
+        WHERE
+        username = #{username} AND password = #{password}
+    </select>
+
+    <select id="queryAll" resultType="Manager">
+        SELECT
+        *
+        FROM
+        manager
+        WHERE
+        level = 1
+    </select>
+
+    <update id="update" parameterType="Manager">
+        UPDATE
+        manager
+        <set>
+            <if test="mname != null">mname = #{mname},</if>
+            <if test="sid != 0">sid = #{sid},</if>
+            <if test="mtel != null">mtel = #{mtel},</if>
+            <if test="msalary != 0.0">msalary = #{msalary},</if>
+            <if test="password != null">password = #{password}</if>
+        </set>
+        WHERE
+            mid = #{mid}
+    </update>
+
+    <insert id="insert" parameterType="Manager">
+        INSERT INTO
+        manager(sid,mname,mtel,msalary,username,password,level)
+        VALUES
+            (#{sid},#{mname},#{mtel},#{msalary},#{username},#{password},#{level})
+
+    </insert>
+
+    <delete id="delete" parameterType="int">
+        DELETE FROM manager WHERE mid = #{mid}
+    </delete>
+
+    <select id="querybyusername" parameterType="String" resultType="int">
+        SELECT count(*) FROM manager WHERE username = #{username}
+    </select>
+
+</mapper>

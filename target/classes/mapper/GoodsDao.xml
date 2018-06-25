@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tt.dao.GoodsDao">
+    <select id="queryById" resultType="Goods" parameterType="int">
+        SELECT
+        *
+        FROM
+        goods
+        WHERE
+        gid = #{gid}
+    </select>
+
+    <select id="queryAll" resultType="Goods" parameterType="int">
+        SELECT
+        *
+        FROM
+        goods
+    </select>
+
+    <select id="queryBySid" resultType="Goods" parameterType="int">
+        SELECT
+        *
+        FROM
+        goods
+        WHERE
+        sid = #{sid}
+    </select>
+    <update id="update" parameterType="Goods">
+        UPDATE
+        goods
+        <set>
+            <if test="gname != null">gname = #{gname},</if>
+            <if test="gprice != 0.0">gprice = #{gprice},</if>
+            <if test="gnum != 0">gnum = #{gnum},</if>
+            <if test="gpic != null">gpic=#{gpic}</if>
+        </set>
+        WHERE
+        gid = #{gid}
+    </update>
+
+    <insert id="insert" useGeneratedKeys="true" keyColumn="gid" keyProperty="gid" parameterType="Goods">
+        INSERT INTO
+        goods(sid,gname,gprice,gnum,gpic)
+        VALUES
+            (#{sid},#{gname},#{gprice},#{gnum},#{gpic})
+    </insert>
+
+    <delete id="delete" parameterType="int">
+        DELETE FROM goods WHERE gid = #{gid}
+    </delete>
+</mapper>
