@@ -16,15 +16,15 @@ public interface ManagerDao {
 
     /**
      * 登录验证
+     *
      * @param username
      * @param password
      * @return
      */
-    Manager login(@Param("username") String username,@Param("password") String password);
+    Manager login(@Param("username") String username, @Param("password") String password);
 
     /**
      * 查询所有
-     *
      *
      * @return
      */

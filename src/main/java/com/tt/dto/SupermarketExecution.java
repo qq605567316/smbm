@@ -21,11 +21,9 @@ public class SupermarketExecution {
     //superlarket列表（查询时候用）
     private List<Supermarket> superList;
 
-    public SupermarketExecution(){
+    public SupermarketExecution() {
 
     }
-
-
 
 
 }

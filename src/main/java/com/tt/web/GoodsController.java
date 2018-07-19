@@ -33,54 +33,52 @@ public class GoodsController {
     private GoodsService goodsService;
 
     @RequestMapping(value = "/list")
-    private String listGoods(){
+    private String listGoods() {
         return "goods/list";// WEB-INF/jsp/"goods/list".jsp
     }
 
     @RequestMapping(value = "/getbyid", method = RequestMethod.GET)
     @ResponseBody
-    private Map<String,Object> getGoodsById(HttpServletRequest request){
-        Map<String,Object> modelMap = new HashMap<String,Object>();
-        Integer gid = HttpServletRequestUtil.getInt(request,"gid");
-        if(gid>-1){
-            try{
+    private Map<String, Object> getGoodsById(HttpServletRequest request) {
+        Map<String, Object> modelMap = new HashMap<String, Object>();
+        Integer gid = HttpServletRequestUtil.getInt(request, "gid");
+        if (gid > -1) {
+            try {
                 Goods goods = goodsService.getByGoodsId(gid);
-                modelMap.put("goods",goods);
-                modelMap.put("success",true);
-            }catch (Exception e){
-                modelMap.put("success",false);
-                modelMap.put("errMsg",e.getMessage());
+                modelMap.put("goods", goods);
+                modelMap.put("success", true);
+            } catch (Exception e) {
+                modelMap.put("success", false);
+                modelMap.put("errMsg", e.getMessage());
             }
-        }else {
-            modelMap.put("success",false);
-            modelMap.put("errMsg","gid 为空");
+        } else {
+            modelMap.put("success", false);
+            modelMap.put("errMsg", "gid 为空");
         }
         return modelMap;
     }
 
-    @RequestMapping(value = "/del",method = RequestMethod.GET)
+    @RequestMapping(value = "/del", method = RequestMethod.GET)
     @ResponseBody
-    private Map<String,Object> delGoodsById(HttpServletRequest request){
-        Map<String,Object> modelMap = new HashMap<String, Object>();
-        Integer gid = HttpServletRequestUtil.getInt(request,"gid");
+    private Map<String, Object> delGoodsById(HttpServletRequest request) {
+        Map<String, Object> modelMap = new HashMap<String, Object>();
+        Integer gid = HttpServletRequestUtil.getInt(request, "gid");
         goodsService.delGoodsById(gid);
-        modelMap.put("success",true);
+        modelMap.put("success", true);
         return modelMap;
     }
 
     @RequestMapping(value = "/getall", method = RequestMethod.GET)
     @ResponseBody
-    private Map<String,Object> getAllGoods(HttpServletRequest request){
-        Map<String,Object> modelMap = new HashMap<String,Object>();
+    private Map<String, Object> getAllGoods(HttpServletRequest request) {
+        Map<String, Object> modelMap = new HashMap<String, Object>();
         Manager manager = (Manager) request.getSession().getAttribute("manager");
-        int now = HttpServletRequestUtil.getInt(request,"now");
+        int now = HttpServletRequestUtil.getInt(request, "now");
         List<Goods> allgoodsList = null;
-        if(manager.getLevel() == 0) {
-            System.out.println("wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww");
+        if (manager.getLevel() == 0) {
             allgoodsList = goodsService.getAllGoods();
-        }else{
+        } else {
             int sid = manager.getSid();
-            System.out.println("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq"+sid);
             allgoodsList = goodsService.getAllBySid(sid);
         }
         //总的数据数量
@@ -100,88 +98,88 @@ public class GoodsController {
             goodsList.add(allgoodsList.get(i));
             System.out.println(allgoodsList.get(i).getGname());
         }
-        modelMap.put("goodsList",goodsList);
-        modelMap.put("success",true);
+        modelMap.put("goodsList", goodsList);
+        modelMap.put("success", true);
         return modelMap;
     }
 
-    @RequestMapping(value = "/add",method = RequestMethod.POST)
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseBody//该注解将map转化为json
-    private Map<String,Object> addGoods(HttpServletRequest request){
-        Map<String,Object> modelMap = new HashMap<String,Object>();
+    private Map<String, Object> addGoods(HttpServletRequest request) {
+        Map<String, Object> modelMap = new HashMap<String, Object>();
         //1.接受并转化相应的参数，包括商品信息及图片信息
-        String goodsStr = HttpServletRequestUtil.getString(request,"goodsStr");
+        String goodsStr = HttpServletRequestUtil.getString(request, "goodsStr");
         ObjectMapper mapper = new ObjectMapper();
         Goods goods = null;
-        try{
-            goods = mapper.readValue(goodsStr,Goods.class);
-        }catch (Exception e){
-            modelMap.put("success",false);
-            modelMap.put("errMsg",e.getMessage());
+        try {
+            goods = mapper.readValue(goodsStr, Goods.class);
+        } catch (Exception e) {
+            modelMap.put("success", false);
+            modelMap.put("errMsg", e.getMessage());
             return modelMap;
         }
         CommonsMultipartFile gPic = null;
         CommonsMultipartResolver cmr =
                 new CommonsMultipartResolver(request.getSession().getServletContext());
-        if(cmr.isMultipart(request)){
+        if (cmr.isMultipart(request)) {
             MultipartHttpServletRequest mhsr = (MultipartHttpServletRequest) request;
             gPic = (CommonsMultipartFile) mhsr.getFile("gPic");
-        }else {
-            modelMap.put("success",false);
-            modelMap.put("errMsg","图片为空");
+        } else {
+            modelMap.put("success", false);
+            modelMap.put("errMsg", "图片为空");
             return modelMap;
         }
 
         //2.添加商品
-        if (goods!=null && gPic!=null){
+        if (goods != null && gPic != null) {
             Manager manager = (Manager) request.getSession().getAttribute("manager");
             goods.setSid(manager.getSid());
-            GoodsExecution ge = goodsService.addGoods(goods,gPic);
-            modelMap.put("success",true);
-        }else {
-            modelMap.put("success",false);
-            modelMap.put("errMsg","请输入完整的商品信息");
+            GoodsExecution ge = goodsService.addGoods(goods, gPic);
+            modelMap.put("success", true);
+        } else {
+            modelMap.put("success", false);
+            modelMap.put("errMsg", "请输入完整的商品信息");
         }
         return modelMap;
     }
 
-    @RequestMapping(value = "/edit",method = RequestMethod.POST)
+    @RequestMapping(value = "/edit", method = RequestMethod.POST)
     @ResponseBody//该注解将map转化为json
-    private Map<String,Object> editGoods(HttpServletRequest request){
-        Map<String,Object> modelMap = new HashMap<String,Object>();
+    private Map<String, Object> editGoods(HttpServletRequest request) {
+        Map<String, Object> modelMap = new HashMap<String, Object>();
         //1.接受并转化相应的参数，包括商品信息及图片信息
-        String goodsStr = HttpServletRequestUtil.getString(request,"goodsStr");
+        String goodsStr = HttpServletRequestUtil.getString(request, "goodsStr");
         ObjectMapper mapper = new ObjectMapper();
         Goods goods = null;
-        try{
-            goods = mapper.readValue(goodsStr,Goods.class);
-        }catch (Exception e){
-            modelMap.put("success",false);
-            modelMap.put("errorMsg",e.getMessage());
+        try {
+            goods = mapper.readValue(goodsStr, Goods.class);
+        } catch (Exception e) {
+            modelMap.put("success", false);
+            modelMap.put("errorMsg", e.getMessage());
             return modelMap;
         }
         CommonsMultipartFile gPic = null;
         CommonsMultipartResolver cmr =
                 new CommonsMultipartResolver(request.getSession().getServletContext());
-        if(cmr.isMultipart(request)){
+        if (cmr.isMultipart(request)) {
             MultipartHttpServletRequest mhsr = (MultipartHttpServletRequest) request;
             gPic = (CommonsMultipartFile) mhsr.getFile("gPic");
         }
 
         //2.修改商品
-        if (goods!=null && goods.getGid()!=null){
+        if (goods != null && goods.getGid() != null) {
             //Session TODO
             GoodsExecution ge;
-            if(gPic == null){
-                ge = goodsService.editGoods(goods,null);
-            }else {
-                ge = goodsService.editGoods(goods,gPic);
+            if (gPic == null) {
+                ge = goodsService.editGoods(goods, null);
+            } else {
+                ge = goodsService.editGoods(goods, gPic);
             }
-            modelMap.put("success",true);
+            modelMap.put("success", true);
             return modelMap;
-        }else {
-            modelMap.put("success",false);
-            modelMap.put("errMsg","请输入完整的商品信息特别是gid");
+        } else {
+            modelMap.put("success", false);
+            modelMap.put("errMsg", "请输入完整的商品信息特别是gid");
             return modelMap;
         }
     }

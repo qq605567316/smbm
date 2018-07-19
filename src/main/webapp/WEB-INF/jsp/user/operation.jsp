@@ -4,7 +4,7 @@
 <c:set value="${pageContext.request.contextPath }" var="path"/>
 <%
     Manager manager = (Manager) request.getSession().getAttribute("manager");
-    if(manager == null){
+    if (manager == null) {
         // 重定向到新地址
         String site = new String("/user/exit");
         response.setStatus(response.SC_MOVED_TEMPORARILY);
@@ -22,13 +22,13 @@
     <meta name="keywords" content="index">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="renderer" content="webkit">
-    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
     <link rel="icon" type="image/png" href="${path}/resources/i/favicon.png">
     <link rel="apple-touch-icon-precomposed" href="${path}/resources/i/app-icon72x72@2x.png">
-    <meta name="apple-mobile-web-app-title" content="Amaze UI" />
+    <meta name="apple-mobile-web-app-title" content="Amaze UI"/>
     <script src="${path}/resources/js/echarts.min.js"></script>
-    <link rel="stylesheet" href="${path}/resources/css/amazeui.min.css" />
-    <link rel="stylesheet" href="${path}/resources/css/amazeui.datatables.min.css" />
+    <link rel="stylesheet" href="${path}/resources/css/amazeui.min.css"/>
+    <link rel="stylesheet" href="${path}/resources/css/amazeui.datatables.min.css"/>
     <link rel="stylesheet" href="${path}/resources/css/app.css">
     <script src="${path}/resources/js/jquery.min.js"></script>
 
@@ -87,7 +87,9 @@
                                             <i class="am-icon-circle-o am-text-success"></i>
                                             <span>夕风色</span>
                                         </div>
-                                        <div class="am-text-truncate"> Amaze UI 的诞生，依托于 GitHub 及其他技术社区上一些优秀的资源；Amaze UI 的成长，则离不开用户的支持。 </div>
+                                        <div class="am-text-truncate"> Amaze UI 的诞生，依托于 GitHub 及其他技术社区上一些优秀的资源；Amaze UI
+                                            的成长，则离不开用户的支持。
+                                        </div>
                                         <div class="menu-messages-content-time">2016-09-21 下午 16:40</div>
                                     </div>
                                 </a>
@@ -106,7 +108,7 @@
                                             <i class="am-icon-circle-o am-text-warning"></i>
                                             <span>禁言小张</span>
                                         </div>
-                                        <div class="am-text-truncate"> 为了能最准确的传达所描述的问题， 建议你在反馈时附上演示，方便我们理解。 </div>
+                                        <div class="am-text-truncate"> 为了能最准确的传达所描述的问题， 建议你在反馈时附上演示，方便我们理解。</div>
                                         <div class="menu-messages-content-time">2016-09-16 上午 09:23</div>
                                     </div>
                                 </a>
@@ -223,14 +225,14 @@
             </li>
             <li class="sidebar-nav-link">
                 <%
-                    if(manager.getLevel()==0){%>
+                    if (manager.getLevel() == 0) {%>
                 <a href="/supermarket/list">
                         <%  }else{%>
                     <a href="#">
-                        <%  }
+                        <% }
                         %>
-                    <i class="am-icon-table sidebar-nav-link-logo"></i> 超市管理
-                </a>
+                        <i class="am-icon-table sidebar-nav-link-logo"></i> 超市管理
+                    </a>
             </li>
             <li class="sidebar-nav-link">
                 <a href="/person/list">
@@ -239,15 +241,15 @@
             </li>
             <li class="sidebar-nav-link">
                 <%
-                    if(manager.getLevel()==0){%>
+                    if (manager.getLevel() == 0) {%>
                 <a href="#">
                         <%  }else{%>
                     <a href="/goods/list">
-                        <%  }
+                        <% }
                         %>
-                    <i class="am-icon-wpforms sidebar-nav-link-logo"></i> 商品管理
+                        <i class="am-icon-wpforms sidebar-nav-link-logo"></i> 商品管理
 
-                </a>
+                    </a>
             </li>
             <li class="sidebar-nav-link">
                 <a href="#" class="active">
@@ -261,23 +263,29 @@
     </div>
 
 
-
     <!-- 内容区域 -->
     <div class="tpl-content-wrapper">
 
         <div class="container-fluid am-cf">
             <div class="row">
                 <div class="am-u-sm-12 am-u-md-12 am-u-lg-9">
-                    <div class="page-header-heading"><span class="am-icon-home page-header-heading-icon"></span> 管理员管理 <small>Amaze UI</small></div>
+                    <div class="page-header-heading"><span class="am-icon-home page-header-heading-icon"></span> 管理员管理
+                        <small>Amaze UI</small>
+                    </div>
                     <p class="page-header-description">Amaze UI 有许多不同的表格可用。</p>
                 </div>
                 <div class="am-u-lg-3 tpl-index-settings-button">
-                    <button type="button" class="page-header-button" onclick="editown(<%=manager.getMid()%>,'<%=manager.getMname()%>',
-                        <%=manager.getMtel()%>,<%=manager.getPassword()%>)"><span class="am-icon-paint-brush"></span> 修改信息</button>
+                    <button type="button" class="page-header-button"
+                            onclick="editown(<%=manager.getMid()%>,'<%=manager.getMname()%>',
+                                <%=manager.getMtel()%>,<%=manager.getPassword()%>)"><span
+                            class="am-icon-paint-brush"></span> 修改信息
+                    </button>
                 </div>
-                <%  if(manager.getLevel()==0){%>
+                <% if (manager.getLevel() == 0) {%>
                 <div class="am-u-lg-3 tpl-index-settings-button">
-                    <button type="button" class="page-header-button" onclick="window.location.href='/user/list'"><span class="am-icon-paper-plane"></span> 新增管理员</button>
+                    <button type="button" class="page-header-button" onclick="window.location.href='/user/list'"><span
+                            class="am-icon-paper-plane"></span> 新增管理员
+                    </button>
                 </div>
                 <%}%>
             </div>
@@ -306,11 +314,11 @@
                                     <th>序号</th>
                                     <th>姓名</th>
                                     <th>电话</th>
-                                    <%if(manager.getLevel()==0){%>
+                                    <%if (manager.getLevel() == 0) {%>
                                     <th>工资</th>
                                     <%}%>
                                     <th>所属超市</th>
-                                    <%if(manager.getLevel()==0){%>
+                                    <%if (manager.getLevel() == 0) {%>
                                     <th>操作</th>
                                     <%}%>
                                 </tr>
@@ -335,8 +343,6 @@
 
                     </div>
                 </div>
-
-
 
 
             </div>
@@ -388,7 +394,7 @@
                 <input type="text" class="am-modal-prompt-input" placeholder="管理员密码" id="editpassword">
             </div>
 
-            <%if(manager.getLevel()==0){%>
+            <%if (manager.getLevel() == 0) {%>
             <div class="am-modal-bd">
                 <label for="doc-ipt-3" class="am-u-sm-2 am-form-label">工资</label>
                 <input type="number" class="am-modal-prompt-input" placeholder="管理员工资" id="editmsalary">
@@ -430,9 +436,9 @@
 <script src="${path}/resources/js/amazeui.datatables.min.js"></script>
 <script src="${path}/resources/js/dataTables.responsive.min.js"></script>
 <script src="${path}/resources/js/app.js"></script>
-<% if(manager.getLevel() == 0){%>
+<% if (manager.getLevel() == 0) {%>
 <script src="${path}/resources/js/manager/supermanagerlist.js"></script>
-<%}else {%>
+<%} else {%>
 <script src="${path}/resources/js/manager/managerlist.js"></script>
 <%}%>
 

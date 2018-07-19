@@ -13,7 +13,7 @@ public class GoodsDaoTest extends BaseTest {
     private GoodsDao goodsDao;
 
     @Test
-    public void testInsert(){
+    public void testInsert() {
         Goods goods = new Goods();
         goods.setSid(1);
         goods.setGname("可乐");
@@ -24,7 +24,7 @@ public class GoodsDaoTest extends BaseTest {
     }
 
     @Test
-    public void update(){
+    public void update() {
         Goods goods = new Goods();
         goods.setGnum(500);
         goods.setGid(2);
@@ -33,24 +33,26 @@ public class GoodsDaoTest extends BaseTest {
         goods.setGpic("test update");
         goodsDao.update(goods);
     }
+
     @Test
-    public void testQueryById(){
+    public void testQueryById() {
         int gid = 1;
         Goods good = goodsDao.queryById(gid);
         System.out.println(good.getGname());
     }
+
     @Test
-    public void testQueryAll(){
+    public void testQueryAll() {
         List<Goods> list = new ArrayList<Goods>();
         list = goodsDao.queryAll();
         System.out.println(list);
     }
 
     @Test
-    public void testQueryBySid(){
+    public void testQueryBySid() {
         List<Goods> list = new ArrayList<Goods>();
         list = goodsDao.queryBySid(3);
-        for (Goods goods: list) {
+        for (Goods goods : list) {
             System.out.println(goods.getGname());
         }
     }

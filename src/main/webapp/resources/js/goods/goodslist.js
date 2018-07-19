@@ -4,10 +4,10 @@ $(function () {
 
 function getlist() {
     $.getJSON('/goods/getall?now=1',
-        function(data) {
+        function (data) {
             if (data.success) {
                 var now = 1;
-                listGoods(now,data);
+                listGoods(now, data);
             }
         });
 }
@@ -28,8 +28,8 @@ function editgoods(gid, gname, gnum, gprice) {
             goods.gprice = $('#editgprice').val();
             var gPic = $('#editgpic')[0].files[0];
             var formData = new FormData();
-            formData.append('gPic',gPic);
-            formData.append('goodsStr',JSON.stringify(goods));
+            formData.append('gPic', gPic);
+            formData.append('goodsStr', JSON.stringify(goods));
             $.ajax({
                 url: '/goods/edit',
                 type: 'POST',
@@ -39,7 +39,7 @@ function editgoods(gid, gname, gnum, gprice) {
                 processData: false,
                 cache: false,
                 success: function () {
-                    window.location.href='/goods/list';
+                    window.location.href = '/goods/list';
                 }
             });
         },
@@ -51,7 +51,7 @@ function editgoods(gid, gname, gnum, gprice) {
 }
 
 
-function listGoods(now,data) {
+function listGoods(now, data) {
     var list = data.goodsList;//后台返回的所有商品List
     var count = Math.floor((data.total + 4) / 5);//总页数
     var html = '';//要插入的动态代码
@@ -61,7 +61,7 @@ function listGoods(now,data) {
     $("#html").empty();
 
     var last = now - 1;
-    if(now > 1){
+    if (now > 1) {
         $("#pagination").append("<li class=\"am-pagination-prev\">\n" +
             "        <a href=\"#\" class=\"\" onclick='getgoods(" + last + ")'>上一页</a>\n" +
             "      </li>");
@@ -100,7 +100,7 @@ function listGoods(now,data) {
             "<td>" + list[i].gname + "</td>" +
             "<td>" + list[i].gnum + "</td>" +
             "<td>" + list[i].gprice + "</td>" +
-            "<td><img src='"+"/image/" + list[i].gpic + "' class=\"tpl-table-line-img\"></td>" +
+            "<td><img src='" + "/image/" + list[i].gpic + "' class=\"tpl-table-line-img\"></td>" +
             "<td>" +
             "<div class=\"tpl-table-black-operation\">\n" +
             "<a href=\"javascript:;\" onclick= editgoods('" +
@@ -123,8 +123,8 @@ function listGoods(now,data) {
 
 //跳转页数实现
 function getgoods(now) {
-    $.getJSON('/goods/getall?now='+now,
-        function(data) {
+    $.getJSON('/goods/getall?now=' + now,
+        function (data) {
             if (data.success) {
                 var list = data.goodsList;//后台返回的所有商品List
                 var count = Math.floor((data.total + 4) / 5);//总页数
@@ -194,8 +194,6 @@ function getgoods(now) {
         });
 
 
-
-
 }
 
 //点击删除调用
@@ -207,10 +205,10 @@ function delgoods(id) {
         onConfirm: function () {
 
             $.ajax({
-                url: '/goods/del?gid='+id,
+                url: '/goods/del?gid=' + id,
                 type: 'GET',
                 success: function (data) {
-                    window.location.href='/goods/list';
+                    window.location.href = '/goods/list';
                 }
             });
 

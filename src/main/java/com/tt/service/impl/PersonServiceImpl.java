@@ -16,7 +16,7 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public List<Person> queryAll(int offset, int limit) {
-        return personDao.queryAll(offset,limit);
+        return personDao.queryAll(offset, limit);
     }
 
     @Override

@@ -4,10 +4,10 @@ $(function () {
 
 function getlist() {
     $.getJSON('/supermarket/getall?now=1',
-        function(data) {
+        function (data) {
             if (data.success) {
                 var now = 1;
-                listsupermarket(now,data);
+                listsupermarket(now, data);
             }
         });
 }
@@ -25,7 +25,7 @@ function editsupermarket(sid, sname, saddress) {
             supermarket.sname = $('#editsname').val();
             supermarket.saddress = $('#editsaddress').val();
             var formData = new FormData();
-            formData.append('supermarketStr',JSON.stringify(supermarket));
+            formData.append('supermarketStr', JSON.stringify(supermarket));
             $.ajax({
                 url: '/supermarket/edit',
                 type: 'POST',
@@ -35,7 +35,7 @@ function editsupermarket(sid, sname, saddress) {
                 processData: false,
                 cache: false,
                 success: function (data) {
-                    window.location.href='/supermarket/list';
+                    window.location.href = '/supermarket/list';
                 }
             });
         },
@@ -47,7 +47,7 @@ function editsupermarket(sid, sname, saddress) {
 }
 
 
-function listsupermarket(now,data) {
+function listsupermarket(now, data) {
     var list = data.supermarketList;//后台返回的所有商品List
     var count = Math.floor((data.total + 4) / 5);//总页数
     var html = '';//要插入的动态代码
@@ -57,7 +57,7 @@ function listsupermarket(now,data) {
     $("#html").empty();
 
     var last = now - 1;
-    if(now > 1){
+    if (now > 1) {
         $("#pagination").append("<li class=\"am-pagination-prev\">\n" +
             "        <a href=\"#\" class=\"\" onclick='getsupermarket(" + last + ")'>上一页</a>\n" +
             "      </li>");
@@ -117,8 +117,8 @@ function listsupermarket(now,data) {
 
 //跳转页数实现
 function getsupermarket(now) {
-    $.getJSON('/supermarket/getall?now='+now,
-        function(data) {
+    $.getJSON('/supermarket/getall?now=' + now,
+        function (data) {
             if (data.success) {
                 var list = data.supermarketList;//后台返回的所有商品List
                 var count = Math.floor((data.total + 4) / 5);//总页数
@@ -186,8 +186,6 @@ function getsupermarket(now) {
         });
 
 
-
-
 }
 
 //点击删除调用
@@ -199,10 +197,10 @@ function delsupermarket(id) {
         onConfirm: function () {
 
             $.ajax({
-                url: '/supermarket/del?sid='+id,
+                url: '/supermarket/del?sid=' + id,
                 type: 'GET',
                 success: function (data) {
-                    window.location.href='/supermarket/list';
+                    window.location.href = '/supermarket/list';
                 }
             });
 

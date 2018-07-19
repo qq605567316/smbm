@@ -11,7 +11,7 @@ $(function () {
                 supermarket.sname = $('#addsname').val();
                 supermarket.saddress = $('#addsaddress').val();
                 var formData = new FormData();
-                formData.append('supermarketStr',JSON.stringify(supermarket));
+                formData.append('supermarketStr', JSON.stringify(supermarket));
                 $.ajax({
                     url: addSupermarketUrl,
                     type: 'POST',
@@ -21,7 +21,7 @@ $(function () {
                     processData: false,
                     cache: false,
                     success: function (data) {
-                        window.location.href='/supermarket/list';
+                        window.location.href = '/supermarket/list';
                     }
                 });
             },
@@ -47,13 +47,12 @@ $(function () {
     //         }
     //     });
 
-         //从组件中获取select的值
-         // ____.__Category = {
-         //     __CategoryId:$('放入组件id').find('option').not(function () {
-         //         return !this.selected;
-         //     }).data('id')
-         // };
-
+    //从组件中获取select的值
+    // ____.__Category = {
+    //     __CategoryId:$('放入组件id').find('option').not(function () {
+    //         return !this.selected;
+    //     }).data('id')
+    // };
 
 
 });

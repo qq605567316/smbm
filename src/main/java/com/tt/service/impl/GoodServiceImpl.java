@@ -21,30 +21,30 @@ public class GoodServiceImpl implements GoodsService {
 
     @Override
     @Transactional
-    public GoodsExecution addGoods(Goods goods, CommonsMultipartFile gPic) throws RuntimeException{
-        if(goods == null){
+    public GoodsExecution addGoods(Goods goods, CommonsMultipartFile gPic) throws RuntimeException {
+        if (goods == null) {
             return new GoodsExecution(GoodsStateEnum.FALSE);
         }
-        try{
+        try {
             //添加商品信息
-            addGoodsImg(goods,gPic);
+            addGoodsImg(goods, gPic);
             int effectedNum = goodsDao.insert(goods);
-            if(effectedNum <= 0){
+            if (effectedNum <= 0) {
                 throw new RuntimeException("商品添加失败");
-            }else {
-                return new GoodsExecution(GoodsStateEnum.SUCCESS,goods);
+            } else {
+                return new GoodsExecution(GoodsStateEnum.SUCCESS, goods);
             }
-        }catch (Exception e){
-            throw new RuntimeException("addGoods error:"+e.getMessage());
+        } catch (Exception e) {
+            throw new RuntimeException("addGoods error:" + e.getMessage());
         }
     }
 
     @Override
     @Transactional
     public GoodsExecution editGoods(Goods goods, CommonsMultipartFile gPic) throws RuntimeException {
-        if(goods == null || goods.getGid() == null){
+        if (goods == null || goods.getGid() == null) {
             return new GoodsExecution(GoodsStateEnum.FALSE);
-        }else {
+        } else {
             try {
                 //1.判断图片有没有修改
                 if (gPic != null) {
@@ -67,7 +67,7 @@ public class GoodServiceImpl implements GoodsService {
                     goods = goodsDao.queryById(goods.getGid());
                     return new GoodsExecution(GoodsStateEnum.SUCCESS, goods);
                 }
-            }catch (Exception e){
+            } catch (Exception e) {
                 throw new RuntimeException("editGoods error" + e.getMessage());
             }
         }
@@ -94,7 +94,7 @@ public class GoodServiceImpl implements GoodsService {
         return goodsDao.queryBySid(sid);
     }
 
-    private void addGoodsImg(Goods goods,CommonsMultipartFile gPic) throws IOException {
+    private void addGoodsImg(Goods goods, CommonsMultipartFile gPic) throws IOException {
         //获取图片目录的相对值路径
         String goodsImgAddr = ImageUtil.generateThumbnail(gPic);
         goods.setGpic(goodsImgAddr);

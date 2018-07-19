@@ -15,14 +15,14 @@ public class ManagerServiceImpl implements ManagerService {
 
     @Override
     public Manager login(String username, String password) {
-        return managerDao.login(username,password);
+        return managerDao.login(username, password);
     }
 
     @Override
     public boolean register(Manager manager) {
-        if(managerDao.querybyusername(manager.getUsername())!=0){
+        if (managerDao.querybyusername(manager.getUsername()) != 0) {
             return false;
-        }else {
+        } else {
             managerDao.insert(manager);
             return true;
         }

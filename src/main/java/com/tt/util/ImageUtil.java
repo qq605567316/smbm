@@ -30,17 +30,17 @@ public class ImageUtil {
     }
 
     //生成随机的文件名  当前年月日时分秒+五位随机数
-    public static String getRandomFileName(){
+    public static String getRandomFileName() {
         //获取随机的五位数
         int rannum = r.nextInt(89999) + 10000;
         String nowTimeStr = sDateFormat.format(new Date());
-        return nowTimeStr+rannum;
+        return nowTimeStr + rannum;
     }
 
     //删除原来的图片
-    public static void deleteFile(String storePath){
+    public static void deleteFile(String storePath) {
         File file = new File(PathUtil.getImgBasePath() + storePath);
-        if(file.exists()){
+        if (file.exists()) {
             file.delete();
         }
     }

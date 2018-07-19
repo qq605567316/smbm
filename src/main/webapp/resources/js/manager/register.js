@@ -1,7 +1,7 @@
 $(function () {
     //从后台获得select组件的数据
     $.getJSON('/supermarket/getall?sid=-1',
-        function(data) {
+        function (data) {
             $('#sid').empty();
             var list = data.allsupermarketList;
             for (var i = 0; i < list.length; i++) {
@@ -18,7 +18,7 @@ $(function () {
         manager.username = $('#username').val();
         manager.password = $('#password').val();
         var formData = new FormData();
-        formData.append('managerStr',JSON.stringify(manager));
+        formData.append('managerStr', JSON.stringify(manager));
         $.ajax({
             url: '/user/add',
             type: 'POST',
@@ -28,12 +28,12 @@ $(function () {
             processData: false,
             cache: false,
             success: function (data) {
-                if(data.success){
+                if (data.success) {
                     alert("注册成功!");
-                }else {
+                } else {
                     alert(data.errMsg);
                 }
-                window.location.href='/user/operation';
+                window.location.href = '/user/operation';
             }
         });
     });
@@ -60,7 +60,6 @@ $(function () {
     //         return !this.selected;
     //     }).data('id')
     // };
-
 
 
 });

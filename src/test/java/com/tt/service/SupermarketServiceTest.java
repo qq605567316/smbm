@@ -12,10 +12,10 @@ public class SupermarketServiceTest extends BaseTest {
     private SupermarketService supermarketService;
 
     @Test
-    public void testGetById() throws Exception{
+    public void testGetById() throws Exception {
         int sid = 1;
         Supermarket supermarket = supermarketService.getById(sid);
-        System.out.println(supermarket.getSid()+"---"+supermarket.getSname()+"---"+supermarket.getSaddress());
+        System.out.println(supermarket.getSid() + "---" + supermarket.getSname() + "---" + supermarket.getSaddress());
 
     }
 }

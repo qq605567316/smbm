@@ -5,7 +5,7 @@ import com.tt.entity.Person;
 import java.util.List;
 
 public interface PersonService {
-    List<Person> queryAll(int offset,int limit);
+    List<Person> queryAll(int offset, int limit);
 
     List<Person> queryBySid(int sid);
 

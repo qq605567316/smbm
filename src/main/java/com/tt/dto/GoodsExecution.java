@@ -17,25 +17,25 @@ public class GoodsExecution {
     //goods列表（查询的时候用到）
     private List<Goods> goodsList;
 
-    public GoodsExecution(){
+    public GoodsExecution() {
 
     }
 
     //针对操作失败情况创建的构造器
-    public GoodsExecution(GoodsStateEnum stateEnum){
+    public GoodsExecution(GoodsStateEnum stateEnum) {
         this.state = stateEnum.getState();
         this.stateInfo = stateEnum.getStateInfo();
     }
 
     //针对操作成功情况创建的构造器
-    public GoodsExecution(GoodsStateEnum stateEnum,Goods goods){
+    public GoodsExecution(GoodsStateEnum stateEnum, Goods goods) {
         this.state = stateEnum.getState();
         this.stateInfo = stateEnum.getStateInfo();
         this.goods = goods;
     }
 
     //针对操作成功情况创建的构造器
-    public GoodsExecution(GoodsStateEnum stateEnum,List<Goods> goodsList){
+    public GoodsExecution(GoodsStateEnum stateEnum, List<Goods> goodsList) {
         this.state = stateEnum.getState();
         this.stateInfo = stateEnum.getStateInfo();
         this.goodsList = goodsList;

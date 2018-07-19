@@ -13,23 +13,23 @@ public class PersonDaoTest extends BaseTest {
     private PersonDao personDao;
 
     @Test
-    public void testQueryAll(){
-        List<Person> personList = personDao.queryAll(5,5);
-        for (Person person:personList) {
+    public void testQueryAll() {
+        List<Person> personList = personDao.queryAll(5, 5);
+        for (Person person : personList) {
             System.out.println(person.getPid());
         }
     }
 
     @Test
-    public void testQueryBySid(){
+    public void testQueryBySid() {
         List<Person> personList = personDao.queryBySid(2);
-        for (Person person:personList) {
+        for (Person person : personList) {
             System.out.println(person.getPid());
         }
     }
 
     @Test
-    public void testCount(){
+    public void testCount() {
         System.out.println(personDao.count());
     }
 }

@@ -10,8 +10,8 @@ public class ManagerServiceTest extends BaseTest {
     private ManagerService managerService;
 
     @Test
-    public void login(){
-        Manager manager = managerService.login("qwe","123");
+    public void login() {
+        Manager manager = managerService.login("qwe", "123");
         System.out.println(manager.getMname());
     }
 }

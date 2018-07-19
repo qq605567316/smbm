@@ -18,7 +18,7 @@ public interface PersonDao {
      * 查询所有
      *
      * @param offset 查询起始位置
-     * @param limit 查询条数
+     * @param limit  查询条数
      * @return
      */
     List<Person> queryAll(@Param("offset") int offset, @Param("limit") int limit);
@@ -53,7 +53,7 @@ public interface PersonDao {
     void delete(int pid);
 
     /**
-     *查询共有多少条记录
+     * 查询共有多少条记录
      */
     int count();
 }

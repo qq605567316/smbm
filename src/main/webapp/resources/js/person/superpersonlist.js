@@ -4,25 +4,25 @@ $(function () {
 
 function getlist() {
     $.getJSON('/person/getall?now=1',
-        function(data) {
+        function (data) {
             if (data.success) {
                 var now = 1;
-                listperson(now,data);
+                listperson(now, data);
             }
         });
 }
 
 //点击编辑调用
-function editperson(pid, sid, pname, ptel,pposition,psalary) {
+function editperson(pid, sid, pname, ptel, pposition, psalary) {
 
     $.getJSON('/supermarket/getall',
-        function(data) {
+        function (data) {
             $('#editsid').empty();
             var list = data.allsupermarketList;
             for (var i = 0; i < list.length; i++) {
-                if(list[i].sid==sid){
+                if (list[i].sid == sid) {
                     $("#editsid").append("<option value='" + list[i].sid + "' selected>" + list[i].sname + "</option>");
-                }else {
+                } else {
                     $("#editsid").append("<option value=" + list[i].sid + ">" + list[i].sname + "</option>");
                 }
             }
@@ -46,7 +46,7 @@ function editperson(pid, sid, pname, ptel,pposition,psalary) {
             person.ptel = $('#editptel').val();
             person.psalary = $('#editpsalary').val();
             var formData = new FormData();
-            formData.append('personStr',JSON.stringify(person));
+            formData.append('personStr', JSON.stringify(person));
             $.ajax({
                 url: '/person/edit',
                 type: 'POST',
@@ -56,7 +56,7 @@ function editperson(pid, sid, pname, ptel,pposition,psalary) {
                 processData: false,
                 cache: false,
                 success: function (data) {
-                    window.location.href='/person/list';
+                    window.location.href = '/person/list';
                 }
             });
         },
@@ -68,7 +68,7 @@ function editperson(pid, sid, pname, ptel,pposition,psalary) {
 }
 
 
-function listperson(now,data) {
+function listperson(now, data) {
     var list = data.personList;//后台返回的所有员工List
     var count = Math.floor((data.total + 4) / 5);//总页数
     var html = '';//要插入的动态代码
@@ -81,7 +81,7 @@ function listperson(now,data) {
     $("#html").empty();
 
     var last = now - 1;
-    if(now > 1){
+    if (now > 1) {
         $("#pagination").append("<li class=\"am-pagination-prev\">\n" +
             "        <a href=\"#\" class=\"\" onclick='getperson(" + last + ")'>上一页</a>\n" +
             "      </li>");
@@ -117,8 +117,7 @@ function listperson(now,data) {
     for (var i = 0; i < list.length; i++) {
 
         var pposition = '';
-        switch(list[i].pposition)
-        {
+        switch (list[i].pposition) {
             case '1':
                 pposition = '"<td>保安</td>" +';
                 break;
@@ -165,8 +164,8 @@ function listperson(now,data) {
 
 //跳转页数实现
 function getperson(now) {
-    $.getJSON('/person/getall?now='+now,
-        function(data) {
+    $.getJSON('/person/getall?now=' + now,
+        function (data) {
             if (data.success) {
                 var list = data.personList;//后台返回的所有员工List
                 var count = Math.floor((data.total + 4) / 5);//总页数
@@ -212,8 +211,7 @@ function getperson(now) {
                 for (var i = 0; i < list.length; i++) {
 
                     var pposition = '';
-                    switch(list[i].pposition)
-                    {
+                    switch (list[i].pposition) {
                         case '1':
                             pposition = '"<td>保安</td>" +';
                             break;
@@ -259,8 +257,6 @@ function getperson(now) {
         });
 
 
-
-
 }
 
 //点击删除调用
@@ -272,10 +268,10 @@ function delperson(id) {
         onConfirm: function () {
 
             $.ajax({
-                url: '/person/del?pid='+id,
+                url: '/person/del?pid=' + id,
                 type: 'GET',
                 success: function (data) {
-                    window.location.href='/person/list';
+                    window.location.href = '/person/list';
                 }
             });
 

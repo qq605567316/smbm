@@ -44,7 +44,7 @@
             <if test="password != null">password = #{password}</if>
         </set>
         WHERE
-            mid = #{mid}
+        mid = #{mid}
     </update>
 
     <insert id="insert" parameterType="Manager">

@@ -8,7 +8,7 @@ $(function () {
 
 
         $.getJSON(supermarketUrl,
-            function(data) {
+            function (data) {
                 $('#addsid').empty();
                 var list = data.allsupermarketList;
                 for (var i = 0; i < list.length; i++) {
@@ -20,7 +20,7 @@ $(function () {
             relatedTarget: this,
             onConfirm: function () {
                 var person = {};
-                if($("#addsid").length>0){
+                if ($("#addsid").length > 0) {
                     person.sid = $('#addsid').val();
                 }
                 person.pname = $('#addpname').val();
@@ -28,7 +28,7 @@ $(function () {
                 person.ptel = $('#addptel').val();
                 person.psalary = $('#addpsalary').val();
                 var formData = new FormData();
-                formData.append('personStr',JSON.stringify(person));
+                formData.append('personStr', JSON.stringify(person));
                 $.ajax({
                     url: addPersonUrl,
                     type: 'POST',
@@ -38,7 +38,7 @@ $(function () {
                     processData: false,
                     cache: false,
                     success: function (data) {
-                        window.location.href='/person/list';
+                        window.location.href = '/person/list';
                     }
                 });
             },
@@ -70,7 +70,6 @@ $(function () {
     //         return !this.selected;
     //     }).data('id')
     // };
-
 
 
 })

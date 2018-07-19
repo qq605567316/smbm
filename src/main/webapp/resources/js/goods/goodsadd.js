@@ -13,8 +13,8 @@ $(function () {
                 goods.gprice = $('#addgprice').val();
                 var gPic = $('#addgpic')[0].files[0];
                 var formData = new FormData();
-                formData.append('gPic',gPic);
-                formData.append('goodsStr',JSON.stringify(goods));
+                formData.append('gPic', gPic);
+                formData.append('goodsStr', JSON.stringify(goods));
                 $.ajax({
                     url: addGoodsUrl,
                     type: 'POST',
@@ -24,7 +24,7 @@ $(function () {
                     processData: false,
                     cache: false,
                     success: function () {
-                        window.location.href='/goods/list';
+                        window.location.href = '/goods/list';
                     }
                 });
             },
@@ -50,13 +50,12 @@ $(function () {
     //         }
     //     });
 
-         //从组件中获取select的值
-         // ____.__Category = {
-         //     __CategoryId:$('放入组件id').find('option').not(function () {
-         //         return !this.selected;
-         //     }).data('id')
-         // };
-
+    //从组件中获取select的值
+    // ____.__Category = {
+    //     __CategoryId:$('放入组件id').find('option').not(function () {
+    //         return !this.selected;
+    //     }).data('id')
+    // };
 
 
 })

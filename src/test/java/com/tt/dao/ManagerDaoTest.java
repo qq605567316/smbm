@@ -11,7 +11,7 @@ public class ManagerDaoTest extends BaseTest {
     private ManagerDao managerDao;
 
     @Test
-    public void insert(){
+    public void insert() {
         Manager manager = new Manager();
         manager.setSid(2);
         manager.setMname("张三");

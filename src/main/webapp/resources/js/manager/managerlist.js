@@ -5,16 +5,16 @@ $(function () {
 function getlist() {
 
     $.getJSON('/user/getall?now=1',
-        function(data) {
+        function (data) {
             if (data.success) {
                 var now = 1;
-                listmanager(now,data);
+                listmanager(now, data);
             }
         });
 }
 
 
-function listmanager(now,data) {
+function listmanager(now, data) {
     var list = data.managerList;//后台返回的所有员工List
     var count = Math.floor((data.total + 4) / 5);//总页数
     var html = '';//要插入的动态代码
@@ -24,7 +24,7 @@ function listmanager(now,data) {
     $("#html").empty();
 
     var last = now - 1;
-    if(now > 1){
+    if (now > 1) {
         $("#pagination").append("<li class=\"am-pagination-prev\">\n" +
             "        <a href=\"#\" class=\"\" onclick='getmanager(" + last + ")'>上一页</a>\n" +
             "      </li>");
@@ -72,8 +72,8 @@ function listmanager(now,data) {
 
 //跳转页数实现
 function getmanager(now) {
-    $.getJSON('/user/getall?now='+now,
-        function(data) {
+    $.getJSON('/user/getall?now=' + now,
+        function (data) {
             if (data.success) {
                 var list = data.managerList;//后台返回的所有员工List
                 var count = Math.floor((data.total + 4) / 5);//总页数
@@ -132,7 +132,7 @@ function getmanager(now) {
 }
 
 
-function editown(mid,mname,mtel,password) {
+function editown(mid, mname, mtel, password) {
     $('#mymname').val(mname);
     $('#mymtel').val(mtel);
     $('#mypassword').val(password);
@@ -146,7 +146,7 @@ function editown(mid,mname,mtel,password) {
             manager.mtel = $('#mymtel').val();
             manager.password = $('#mypassword').val();
             var formData = new FormData();
-            formData.append('managerStr',JSON.stringify(manager));
+            formData.append('managerStr', JSON.stringify(manager));
             $.ajax({
                 url: '/user/edit',
                 type: 'POST',
@@ -156,7 +156,7 @@ function editown(mid,mname,mtel,password) {
                 processData: false,
                 cache: false,
                 success: function (data) {
-                    window.location.href='/user/operation';
+                    window.location.href = '/user/operation';
                 }
             });
         },

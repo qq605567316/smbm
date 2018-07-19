@@ -12,7 +12,7 @@ public class GoodsServiceTest extends BaseTest {
     private GoodsService goodsService;
 
     @Test
-    public void testGetAllGoods(){
+    public void testGetAllGoods() {
         List<Goods> goodsList = goodsService.getAllGoods();
         System.out.println(goodsList);
     }

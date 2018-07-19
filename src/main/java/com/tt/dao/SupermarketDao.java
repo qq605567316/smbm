@@ -18,7 +18,7 @@ public interface SupermarketDao {
      * 查询所有
      *
      * @param offset 查询起始位置
-     * @param limit 查询条数
+     * @param limit  查询条数
      * @return
      */
     List<Supermarket> queryAll(@Param("offset") int offset, @Param("limit") int limit);

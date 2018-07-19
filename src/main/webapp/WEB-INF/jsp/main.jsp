@@ -4,7 +4,7 @@
 <c:set value="${pageContext.request.contextPath }" var="path"/>
 <%
     Manager manager = (Manager) request.getSession().getAttribute("manager");
-    if(manager == null){
+    if (manager == null) {
         // 重定向到新地址
         String site = new String("/user/exit");
         response.setStatus(response.SC_MOVED_TEMPORARILY);
@@ -22,13 +22,13 @@
     <meta name="keywords" content="index">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="renderer" content="webkit">
-    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
     <link rel="icon" type="image/png" href="${path}/resources/i/favicon.png">
     <link rel="apple-touch-icon-precomposed" href="${path}/resources/i/app-icon72x72@2x.png">
-    <meta name="apple-mobile-web-app-title" content="Amaze UI" />
+    <meta name="apple-mobile-web-app-title" content="Amaze UI"/>
     <script src="${path}/resources/js/echarts.min.js"></script>
-    <link rel="stylesheet" href="${path}/resources/css/amazeui.min.css" />
-    <link rel="stylesheet" href="${path}/resources/css/amazeui.datatables.min.css" />
+    <link rel="stylesheet" href="${path}/resources/css/amazeui.min.css"/>
+    <link rel="stylesheet" href="${path}/resources/css/amazeui.datatables.min.css"/>
     <link rel="stylesheet" href="${path}/resources/css/app.css">
     <script src="${path}/resources/js/jquery.min.js"></script>
 
@@ -87,7 +87,9 @@
                                             <i class="am-icon-circle-o am-text-success"></i>
                                             <span>夕风色</span>
                                         </div>
-                                        <div class="am-text-truncate"> Amaze UI 的诞生，依托于 GitHub 及其他技术社区上一些优秀的资源；Amaze UI 的成长，则离不开用户的支持。 </div>
+                                        <div class="am-text-truncate"> Amaze UI 的诞生，依托于 GitHub 及其他技术社区上一些优秀的资源；Amaze UI
+                                            的成长，则离不开用户的支持。
+                                        </div>
                                         <div class="menu-messages-content-time">2016-09-21 下午 16:40</div>
                                     </div>
                                 </a>
@@ -106,7 +108,7 @@
                                             <i class="am-icon-circle-o am-text-warning"></i>
                                             <span>禁言小张</span>
                                         </div>
-                                        <div class="am-text-truncate"> 为了能最准确的传达所描述的问题， 建议你在反馈时附上演示，方便我们理解。 </div>
+                                        <div class="am-text-truncate"> 为了能最准确的传达所描述的问题， 建议你在反馈时附上演示，方便我们理解。</div>
                                         <div class="menu-messages-content-time">2016-09-16 上午 09:23</div>
                                     </div>
                                 </a>
@@ -222,14 +224,14 @@
             </li>
             <li class="sidebar-nav-link">
                 <%
-                    if(manager.getLevel()==0){%>
+                    if (manager.getLevel() == 0) {%>
                 <a href="/supermarket/list">
                         <%  }else{%>
                     <a href="#">
-                        <%  }
+                        <% }
                         %>
-                    <i class="am-icon-table sidebar-nav-link-logo"></i> 超市管理
-                </a>
+                        <i class="am-icon-table sidebar-nav-link-logo"></i> 超市管理
+                    </a>
             </li>
             <li class="sidebar-nav-link">
                 <a href="/person/list">
@@ -238,15 +240,15 @@
             </li>
             <li class="sidebar-nav-link">
                 <%
-                    if(manager.getLevel()==0){%>
+                    if (manager.getLevel() == 0) {%>
                 <a href="#">
                         <%  }else{%>
                     <a href="/goods/list">
-                        <%  }
+                        <% }
                         %>
-                    <i class="am-icon-wpforms sidebar-nav-link-logo"></i> 商品管理
+                        <i class="am-icon-wpforms sidebar-nav-link-logo"></i> 商品管理
 
-                </a>
+                    </a>
             </li>
             <li class="sidebar-nav-link">
                 <a href="/user/operation">
@@ -265,11 +267,14 @@
         <div class="container-fluid am-cf">
             <div class="row">
                 <div class="am-u-sm-12 am-u-md-12 am-u-lg-9">
-                    <div class="page-header-heading"><span class="am-icon-home page-header-heading-icon"></span> 部件首页 <small>Amaze UI</small></div>
+                    <div class="page-header-heading"><span class="am-icon-home page-header-heading-icon"></span> 部件首页
+                        <small>Amaze UI</small>
+                    </div>
                     <p class="page-header-description">Amaze UI 含近 20 个 CSS 组件、20 余 JS 组件，更有多个包含不同主题的 Web 组件。</p>
                 </div>
                 <div class="am-u-lg-3 tpl-index-settings-button">
-                    <button type="button" class="page-header-button"><span class="am-icon-paint-brush"></span> 设置</button>
+                    <button type="button" class="page-header-button"><span class="am-icon-paint-brush"></span> 设置
+                    </button>
                 </div>
             </div>
 
@@ -367,15 +372,18 @@
                         </div>
                         <div class="widget-body widget-body-md am-fr">
 
-                            <div class="am-progress-title">CPU Load <span class="am-fr am-progress-title-more">28% / 100%</span></div>
+                            <div class="am-progress-title">CPU Load <span class="am-fr am-progress-title-more">28% / 100%</span>
+                            </div>
                             <div class="am-progress">
                                 <div class="am-progress-bar" style="width: 15%"></div>
                             </div>
-                            <div class="am-progress-title">CPU Load <span class="am-fr am-progress-title-more">28% / 100%</span></div>
+                            <div class="am-progress-title">CPU Load <span class="am-fr am-progress-title-more">28% / 100%</span>
+                            </div>
                             <div class="am-progress">
                                 <div class="am-progress-bar  am-progress-bar-warning" style="width: 75%"></div>
                             </div>
-                            <div class="am-progress-title">CPU Load <span class="am-fr am-progress-title-more">28% / 100%</span></div>
+                            <div class="am-progress-title">CPU Load <span class="am-fr am-progress-title-more">28% / 100%</span>
+                            </div>
                             <div class="am-progress">
                                 <div class="am-progress-bar am-progress-bar-danger" style="width: 35%"></div>
                             </div>
@@ -409,7 +417,8 @@
 
                         <div class="widget-body  am-fr">
                             <div class="am-scrollable-horizontal ">
-                                <table width="100%" class="am-table am-table-compact am-text-nowrap tpl-table-black " id="example-r">
+                                <table width="100%" class="am-table am-table-compact am-text-nowrap tpl-table-black "
+                                       id="example-r">
                                     <thead>
                                     <tr>
                                         <th>文章标题</th>

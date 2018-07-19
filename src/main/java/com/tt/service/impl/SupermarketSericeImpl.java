@@ -27,12 +27,12 @@ public class SupermarketSericeImpl implements SupermarketService {
 
     @Override
     public List<Supermarket> getList() {
-        return supermarketDao.queryAll(0,1000);
+        return supermarketDao.queryAll(0, 1000);
     }
 
     @Override
     public void addSupermarket(Supermarket supermarket) {
-        if(supermarket==null){
+        if (supermarket == null) {
             throw new RuntimeException("超市信息为空");
         }
         supermarketDao.insert(supermarket);
@@ -40,7 +40,7 @@ public class SupermarketSericeImpl implements SupermarketService {
 
     @Override
     public void editSupermarket(Supermarket supermarket) {
-        if(supermarket==null){
+        if (supermarket == null) {
             throw new RuntimeException("超市信息为空");
         }
         supermarketDao.update(supermarket);
